@@ -1,6 +1,99 @@
 ## Ledger demo
 
+This is a brief demo of the meaning of block-chain and how to adapt this technology to supply chain problems.
 
+This example is not intended to be:
+
+ - A proposal for implementation. 
+ - A complete mapping of any domain business.
+ - A guideline
+ 
+ For this demo we use the web-ledger proposal coming from W3C
+ 
+ + [W3C web ledger](https://w3c.github.io/web-ledger/)
+ 
+ And github as repository for the distributed ledger.
+
+## Configuration
+
+It is only needed to start the app as a node app. 
+
+```bash
+$ npm install
+$ node app
+
+0 "memento OK" => loaded
+1 "logger OK" => loaded
+2 "Express OK" => loaded
+3 "Git repository cloned" => loaded
+======= pre initialized =======
+0 "1 blocks added to index OK" => loaded
+====== post initialized =======
+Server listening on port 3000
+```
+
+You have to copy some valid github public and private keys in the config directory
+ 
+```bash
+$ ls config/*
+
+default.json        id_rsa              storage-block.json
+genesis.json        id_rsa.pub
+``` 
+
+## REST Api
+
+POST http://localhost:3000/ledger with payload
+
+```json
+{
+	"claim": {
+		"verb": "order",
+		"name": "paper",
+		"value": 1000
+	},
+	"recipient": "david"
+}
+```
+
+produces a new block in the ledger
+
+```json
+{
+  "message": "block appended",
+  "block_id": "did:5c8f0290-4788-11e7-96c5-0dbe70981869"
+}
+```
+GET http://localhost:3000/ledger/did:5c8f0290-4788-11e7-96c5-0dbe70981869
+
+renders the content of the block
+
+```json
+{
+  "@context": [
+    "https://w3id.org/web-ledger/v1",
+    "EA-Davengeo"
+  ],
+  "id": "did:5c8f0290-4788-11e7-96c5-0dbe70981869",
+  "type": "LedgerStorageBlock",
+  "setObject": [
+    {
+      "claim": {
+        "verb": "order",
+        "name": "paper",
+        "value": 10
+      },
+      "recipient": "david",
+      "tm": 1496403665209
+    }
+  ],
+  "previousBlock": {
+    "id": "did:f6ea280f-8011-4502-a29f-464954de3427",
+    "hash": "urn:sha256:f8cc683279303aa75d823aa03b97f6e053e69c415d2ac3d0ee69b040f7bd7f19"
+  },
+  "signature": ""
+}
+```
 
 ## Production Deployment
 
@@ -18,24 +111,13 @@ Create a Heroku application by running this command:
 heroku create $APP_NAME --no-remote -o vot-dev
 ```
 
-Create a configuration variable for the side-cared application name, host and port.
-In this case we use a given node-demo app in heroku
-
-```bash
-heroku config:set --app $APP_NAME GITHUB_TOKEN=d9899285b47f0555a60f35f21bc8473b2f4d887b
-```
-
 Deploy the app to Heroku using maven (activate 'heroku' spring-profile):
 
 ```bash
-mvn clean install -P heroku -DskipTests
+git push heroku master
 ```
 
 ## Viewing Your Application
-
-```bash
-heroku open --app $APP_NAME
-```
 
 Viewing the logs:
 
@@ -43,75 +125,10 @@ Viewing the logs:
 heroku logs --tail --app $APP_NAME
 ```
 
-## Checking in Eureka
-
-if you have curl installed try with the following, you probably have to build the authorization token depending the Eureka credentials
-I have used node-vault-demo for the snippet.
-
-```bash
-curl -X GET \
-  https://tme-eureka-dev.herokuapp.com/eureka/apps/NODE-VAULT-DEMO-SIDECAR \
-  -H 'accept: application/json' \
-  -H 'authorization: Basic dXNlcjpjaGFuZ2VpdA=='
-```
-
-the result should resemble like this:
-
-```json
-{
-  "application": {
-    "name": "NODE-VAULT-DEMO-SIDECAR",
-    "instance": [
-      {
-        "instanceId": "92a59736-c122-431c-8465-f36398791c33.prvt.dyno.rt.heroku.com:node-vault-demo-sidecar:57613",
-        "hostName": "node-vault-demo.herokuapp.com",
-        "app": "NODE-VAULT-DEMO-SIDECAR",
-        "ipAddr": "172.16.44.198",
-        "status": "UP",
-        "overriddenstatus": "UNKNOWN",
-        "port": {
-          "$": 80,
-          "@enabled": "true"
-        },
-        "securePort": {
-          "$": 443,
-          "@enabled": "false"
-        },
-        "countryId": 1,
-        "dataCenterInfo": {
-          "@class": "com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo",
-          "name": "MyOwn"
-        },
-        "leaseInfo": {
-          "renewalIntervalInSecs": 10,
-          "durationInSecs": 90,
-          "registrationTimestamp": 1495537447691,
-          "lastRenewalTimestamp": 1495537967854,
-          "evictionTimestamp": 0,
-          "serviceUpTimestamp": 1495537447691
-        },
-        "metadata": {
-          "@class": "java.util.Collections$EmptyMap"
-        },
-        "homePageUrl": "http://node-vault-demo.herokuapp.com:80/",
-        "statusPageUrl": "http://node-vault-demo.herokuapp.com:57613/info",
-        "healthCheckUrl": "http://node-vault-demo.herokuapp.com:57613/health",
-        "vipAddress": "node-vault-demo-sidecar",
-        "secureVipAddress": "node-vault-demo-sidecar",
-        "isCoordinatingDiscoveryServer": "false",
-        "lastUpdatedTimestamp": "1495537447691",
-        "lastDirtyTimestamp": "1495537447130",
-        "actionType": "ADDED"
-      }
-    ]
-  }
-}
-```
-
-Enjoy you service discovery.
-
 ## Further Reading
 
-+ [Spring could sidecar reference](http://projects.spring.io/spring-cloud/spring-cloud.html#_polyglot_support_with_sidecar)
-+ [Spring cloud sidecar in DZone](https://dzone.com/articles/spring-cloud-sidecar)
-+ [Spring cloud sidecar github repo](https://github.com/spring-cloud/spring-cloud-netflix/tree/master/spring-cloud-netflix-sidecar)
++ [How Blockchain Technology Is Reinventing Global Trade Efficiency](https://distributed.com/news/how-blockchain-technology-is-reinventing-global-trade-efficiency/)
++ [Hyperledger transaction family spec](http://intelledger.github.io/transaction_family_specifications.html)
++ [Toyota pushes into blockchain tech to enable the next generation of cars](https://techcrunch.com/2017/05/22/toyota-pushes-into-blockchain-tech-to-enable-the-next-generation-of-cars/)
++ [Blockchain as distributed database](https://medium.com/@sbmeunier/blockchain-technology-a-very-special-kind-of-distributed-database-e63d00781118)
+
