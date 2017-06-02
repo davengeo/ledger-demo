@@ -1,0 +1,60 @@
+{
+  "ledger": {
+    "genesis_id": "did:f6ea280f-8011-4502-a29f-464954de3427"
+  },
+  "bootstrap": {
+    "pre": [
+      {
+        "lib": "./memento-init",
+        "param": "memento"
+      },
+      {
+        "lib": "./logger-init"
+      },
+      {
+        "lib": "./express-init",
+        "param": "routes"
+      },
+      {
+        "lib": "../git-repository",
+        "param": "repository"
+      }
+    ],
+    "post": [
+      {
+        "lib": "../semantic-groups"
+      }
+    ]
+  },
+  "repository": {
+    "remote": "git@github.com:davengeo/ledger-repo.git",
+    "local": "repo",
+    "committer": {
+      "email": "david.navarro.ext@external.toyota.europe.com",
+      "name": "David Navarro"
+    }
+  },
+  "routes": {
+    "dynamic": [
+      {
+        "route": "/ledger",
+        "lib": "lib/routes/ledger"
+      },
+      {
+        "route": "/group",
+        "lib": "lib/routes/groups"
+      },
+      {
+        "route": "/git",
+        "lib": "lib/routes/git-commands"
+      },
+      {
+        "route": "/webhook",
+        "lib": "lib/routes/webhook"
+      }
+    ],
+    "static": [
+      "public"
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "@context": [
+    "https://w3id.org/web-ledger/v1",
+    "EA-Davengeo"
+  ],
+  "id": "",
+  "type": "LedgerStorageBlock",
+  "setObject": [],
+  "previousBlock": {
+    "id": "",
+    "hash": ""
+  },
+  "signature": ""
+}

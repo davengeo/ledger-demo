@@ -1,0 +1,29 @@
+{
+  "@context": "https://w3id.org/web-ledger/v1",
+  "id": "did:f6ea280f-8011-4502-a29f-464954de3427",
+  "type": "LedgerConfigurationBlock",
+  "ledgerConfig": {
+    "id": "did:f6ea280f-8011-4502-a29f-464954de3427",
+    "type": "LedgerConfiguration",
+    "name": "Genesis",
+    "description": "Genesis ledger block",
+    "storageMechanism": "SequentialList",
+    "consensusAlgorithm": {
+      "type": "ProofOfSignature2016",
+      "approvedSigner": [
+        "https://blue.example.com/keys/j37f8",
+        "https://red.example.com/keys/83hfk"
+      ],
+      "minimumSignaturesRequired": 1
+    }
+  },
+  "previousBlock": {
+    "hash": "urn:sha256:0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "signature": {
+    "type": "RsaSignature2016",
+    "created": "2016-10-05T11:47:26Z",
+    "creator": "http://blue.example.com/keys/j37f8",
+    "signatureValue": "RG+t2EbnMKr4zIwgncLHTb/JvAZ/EIXmTXrrad7DBdlchKPPC9j91N793eHY5UYx4zx7PTDnU2HlW9zqQD1EMBwI7TtqE7BfvxOFodjKJ/Aw16vpAmw2h2Jo9NBu4BvFWsLPCiMLHuW7Vxo7XDkGVfaZUqk/X2q/xpRmqJ1tOlNgivUH8bIm/TUAG3g90DMN9s5zImVyB4B20zMJk8K50BbpHYKUVNWCaHnv9F4VvUUa+AdNeNlC8W1F5j2WChyXzd+51bervxQErZUDFyocW/xEYPvJXPSGnL0ARBDggKQDe1M3bg8w7GnMGrJBieNZAuK2mxOtF2rOPDU3oMk3ZQ=="
+  }
+}
