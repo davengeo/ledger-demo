@@ -12,8 +12,16 @@ This example is not intended to be:
  
  + [W3C web ledger](https://w3c.github.io/web-ledger/)
  
- And github as repository for the distributed ledger.
+ And A github as repository for the distributed ledger.
 
+ + [Ledger repository](https://github.com/davengeo/ledger-repo)
+ 
+ In the ledger repository there is webhook for all the push events.
+ 
+ This webhook is currently installed in heroku and accessible as 
+ 
+ + [Heroku webhook](https://ledger-demo.herokuapp.com/webhook)
+ 
 ## Configuration
 
 It is only needed to start the app as a node app. 
@@ -32,7 +40,7 @@ $ node app
 Server listening on port 3000
 ```
 
-You have to copy some valid github public and private keys in the config directory
+You have to copy any valid github public and private keys in the config directory
  
 ```bash
 $ ls config/*
@@ -42,6 +50,8 @@ genesis.json        id_rsa.pub
 ``` 
 
 ## REST Api
+
+### Create a block, view the block
 
 POST http://localhost:3000/ledger with payload
 
@@ -94,6 +104,38 @@ renders the content of the block
   "signature": ""
 }
 ```
+
+### Groups and queries
+
+```bash
+curl -X GET \
+  'http://localhost:3000/group/david?name=paper&verb=consume'  
+```
+
+Calculate the amount of *consume* of *paper* made by the actor *david*.
+
+
+```bash
+curl -X GET \
+  'http://localhost:3000/group/warehouse?name=paper&verb=inventory'  
+```
+
+Calculates the *inventory* state of the actor *warehouse*. Inventory is defined as *delivery* - *consume*.
+
+
+### Pull and Push
+
+```bash
+curl -X POST http://localhost:3000/git/pull
+```
+produces the sync between the local repo and the remote repo in github.
+
+```bash
+curl -X POST http://localhost:3000/git/push
+```
+makes an automatic push of the new blocks into the remote ledger. This fails whether there is nothing to push.
+
+
 
 ## Production Deployment
 
