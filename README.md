@@ -1,12 +1,12 @@
-## Ledger demo
+## Distributed Ledger demo
 
-This is a brief demo of the meaning of block-chain and how to adapt this technology to supply chain problems.
+This is a brief demo of the meaning of blockchain and how to adapt the technology to supply chain problems.
 
 This example is not intended to be:
 
  - A proposal for implementation. 
  - A complete mapping of any domain business.
- - A guideline
+ - A guideline for further development.
  
  For this demo we use the web-ledger proposal coming from W3C
  
@@ -122,6 +122,9 @@ curl -X GET \
 
 Calculates the *inventory* state of the actor *warehouse*. Inventory is defined as *delivery* - *consume*.
 
+### Business process
+
+This 
 
 ### Pull and Push
 
