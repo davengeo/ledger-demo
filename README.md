@@ -124,7 +124,7 @@ Calculates the *inventory* state of the actor *warehouse*. Inventory is defined 
 
 ### Business process
 
-This 
+This example enable and enforce a business process
 
 ### Pull and Push
 
