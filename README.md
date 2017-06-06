@@ -5,18 +5,18 @@ This is a brief demo of the meaning of blockchain and how to adapt the technolog
 This example is not intended to be:
 
  - A proposal for implementation. 
- - A complete mapping of any domain business.
+ - A mapping of any domain business.
  - A guideline for further development.
  
  For this demo we use the web-ledger proposal coming from W3C
  
  + [W3C web ledger](https://w3c.github.io/web-ledger/)
  
- And A github as repository for the distributed ledger.
+ And a github as repository for the distributed ledger.
 
  + [Ledger repository](https://github.com/davengeo/ledger-repo)
  
- In the ledger repository there is webhook for all the push events.
+ In the ledger repository there is active a webhook for all the push events.
  
  This webhook is currently installed in heroku and accessible as 
  
@@ -124,7 +124,9 @@ Calculates the *inventory* state of the actor *warehouse*. Inventory is defined 
 
 ### Business process
 
-This example enable and enforce a business process
+This example enable and enforce a business process which is explained in the next BPMN diagram
+
+
 
 ### Pull and Push
 
