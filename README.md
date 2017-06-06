@@ -126,7 +126,7 @@ Calculates the *inventory* state of the actor *warehouse*. Inventory is defined 
 
 This example enable and enforce a business process which is explained in the next BPMN diagram
 
-
+![Alt business process](https://rawgit.com/davengeo/ledger-demo/master/public/img/diagram.svg)
 
 ### Pull and Push
 
