@@ -128,6 +128,16 @@ This example enable and enforce a business process which is explained in the nex
 
 ![Alt business process](https://rawgit.com/davengeo/ledger-demo/master/public/img/diagram.svg)
 
+"david", "christos" and "christian" are three member of the EA department who consume day by day some assets like paper 
+and pencils.
+
+They have access to a personal inventory of these assets. When they decide it is needed they order some volume of the
+ asset.
+ 
+ The warehouse reacts to the orders of "david", "christos" and "christian". So the warehouse consume the volume of 
+ the order from it own inventory and deliver the same quantity to the personal inventory of the recipient.
+  
+
 ### Pull and Push
 
 ```bash
