@@ -135,7 +135,7 @@ or *pencils*.
 They have access to a personal inventory of their assets. When they decide it is needed they order some amount of the
  specific asset.
  
- Then the *warehouse* reacts to these orders from the *EA department*.  warehouse consume the volume of 
+ Then the *warehouse* reacts to these orders from the *EA department*.  The *warehouse* consumes the volume of 
  the order from it own inventory and deliver the same quantity to the personal inventory of the order originator.
   
 
